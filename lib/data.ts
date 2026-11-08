@@ -86,4 +86,9 @@ export const PROJECTS: Project[] = [
     desc: "Geospatial analysis of accident data that finds high-risk hotspots and renders them on an interactive HTML map.",
     tags: ["Pandas", "Geospatial", "Jupyter"], repo: GH + "Accident_hotspots",
   },
+  {
+    title: "Student Performance Analyzer", date: "2025", cat: "ml",
+    desc: "Processes Class 10–12 marks data to compute totals, rank top performers and calculate subject-wise averages, with visual reports on academic trends and class-level strengths.",
+    tags: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn"], repo: GH + "Student-performance-analyzer",
+  },
 ];
