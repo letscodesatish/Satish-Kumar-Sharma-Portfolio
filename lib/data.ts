@@ -111,4 +111,9 @@ export const PROJECTS: Project[] = [
     desc: "Lightweight offline IDE with the Monaco editor, an integrated terminal (node-pty + xterm.js) and local execution of JavaScript, Python and Java.",
     tags: ["Electron", "Monaco", "xterm.js"], repo: GH + "CodeRunner",
   },
+  {
+    title: "Robo Fly — 2D Arcade Game", date: "2025", cat: "fun",
+    desc: "Flappy Bird-style arcade game with procedurally generated obstacles, gravity/velocity physics and real-time collision detection. Added sound and persistent high scores, and packaged it as a standalone executable with PyInstaller.",
+    tags: ["Python", "Pygame", "PyInstaller"], repo: GH + "Robo_Fly",
+  },
 ];
