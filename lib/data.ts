@@ -101,4 +101,9 @@ export const PROJECTS: Project[] = [
     desc: "Full-stack app where users fill a form and download a professional resume and cover letter as .docx files.",
     tags: ["React", "Flask", "python-docx"], repo: GH + "Resume_Coverletter_Builder", live: "https://resume-coverletter-builder-bice.vercel.app",
   },
+  {
+    title: "Talk-Back — AI Assistive Assistant", date: "SIH Hackathon · 2025", cat: "ai",
+    desc: "Smart India Hackathon 2025 project that helps visually impaired users access technology through audio-first interaction.",
+    tags: ["AI", "Accessibility", "Speech"], repo: GH + "Talk-Back-AI-Assistive-Assistant",
+  },
 ];
