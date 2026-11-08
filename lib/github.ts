@@ -137,3 +137,31 @@ async function viaHtml() {
   return { counts, levels };
 }
 
+/** Fallback that only needs api.github.com: count commits per day via the commit search API. */
+async function viaCommitSearch() {
+  const since = new Date(Date.now() - 365 * 86_400_000).toISOString().slice(0, 10);
+  const headers: HeadersInit = {
+    Accept: "application/vnd.github+json",
+    "User-Agent": "satish-portfolio",
+    ...(process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {}),
+  };
+  const counts = new Map<string, number>();
+  // 100 per page; up to 5 pages (500 commits) keeps us well inside the 10 requests/minute search limit
+  for (let page = 1; page <= 5; page++) {
+    const q = `author:${PROFILE.githubUser} author-date:>=${since}`;
+    const res = await fetch(
+      `${API}/search/commits?q=${encodeURIComponent(q)}&sort=author-date&order=desc&per_page=100&page=${page}`,
+      { headers, next: { revalidate: 3600 } }
+    );
+    if (!res.ok) return page > 1 ? { counts, levels: undefined } : null;
+    const json = await res.json();
+    const items: { commit: { author: { date: string } } }[] = json.items ?? [];
+    for (const it of items) {
+      const day = it.commit.author.date.slice(0, 10); // author's local date, like GitHub's own graph
+      counts.set(day, (counts.get(day) ?? 0) + 1);
+    }
+    if (items.length < 100) break;
+  }
+  return { counts, levels: undefined };
+}
+
