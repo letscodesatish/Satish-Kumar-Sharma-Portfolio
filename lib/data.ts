@@ -46,4 +46,9 @@ export const PROJECTS: Project[] = [
     desc: "Production-ready autonomous AI agent for PG accommodation discovery and booking near UIET, CSJMU. Multi-step planning, conversation memory, real-time filtering by budget, room type and food, plus automated booking emails via AWS SES.",
     tags: ["Groq Llama 3.3 70B", "JavaScript", "AWS SES", "Agents"], repo: GH + "PG_Booking_Agent",
   },
+  {
+    title: "Sehat-Sarthi — AI Virtual Village Clinic", date: "2026", cat: "ai",
+    desc: "Offline-first, AI-assisted clinical decision-support PWA for rural health workers. Patient queue, red-flag symptom intake, rule-based triage, first-aid guidance, doctor tele-consult and analytics, in Hindi, Marathi and English.",
+    tags: ["TypeScript", "PWA", "AI Triage", "i18n"], repo: GH + "Sehat-Sarthi",
+  },
 ];
