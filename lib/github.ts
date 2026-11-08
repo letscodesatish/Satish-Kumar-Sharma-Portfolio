@@ -165,3 +165,21 @@ async function viaCommitSearch() {
   return { counts, levels: undefined };
 }
 
+export type GitHubCalendar = { cal: Calendar; unit: "contribution" | "commit" };
+
+/**
+ * Tries, in order:
+ *   1. GraphQL API (needs GITHUB_TOKEN)           — exact contributions
+ *   2. github.com public calendar page             — exact contributions
+ *   3. commit search API (api.github.com, no token) — commits only
+ * so the graph still renders when github.com itself is having an outage.
+ */
+export async function getGitHubCalendar(): Promise<GitHubCalendar | null> {
+  const token = process.env.GITHUB_TOKEN;
+  const exact = (token && (await viaGraphQL(token).catch(() => null))) || (await viaHtml().catch(() => null));
+  if (exact) return { cal: buildCalendar(exact.counts, exact.levels), unit: "contribution" };
+
+  const commits = await viaCommitSearch().catch(() => null);
+  if (commits) return { cal: buildCalendar(commits.counts), unit: "commit" };
+  return null;
+}
