@@ -106,4 +106,9 @@ export const PROJECTS: Project[] = [
     desc: "Smart India Hackathon 2025 project that helps visually impaired users access technology through audio-first interaction.",
     tags: ["AI", "Accessibility", "Speech"], repo: GH + "Talk-Back-AI-Assistive-Assistant",
   },
+  {
+    title: "Offline Code Runner", date: "2026", cat: "fun",
+    desc: "Lightweight offline IDE with the Monaco editor, an integrated terminal (node-pty + xterm.js) and local execution of JavaScript, Python and Java.",
+    tags: ["Electron", "Monaco", "xterm.js"], repo: GH + "CodeRunner",
+  },
 ];
