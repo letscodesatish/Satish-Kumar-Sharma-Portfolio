@@ -67,3 +67,40 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 .btn--ghost { color: var(--muted); padding-inline: 8px; }
 .btn--ghost:hover { color: var(--text); }
 
+/* ---------- Header ---------- */
+.header {
+  position: fixed; inset: 0 0 auto; z-index: 50; height: var(--header-h);
+  display: flex; align-items: center;
+  transition: background .3s, box-shadow .3s;
+}
+.header.is-scrolled { background: rgba(20, 25, 37, .92); backdrop-filter: blur(10px); box-shadow: 0 6px 24px -10px rgba(0,0,0,.6); }
+.header__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+
+.logo { display: flex; align-items: center; gap: 10px; color: #fff; z-index: 2; }
+.logo__mark { width: 40px; height: 44px; }
+.logo__text { font-size: 24px; font-weight: 500; letter-spacing: -.01em; }
+.logo__dot { color: var(--blue-400); }
+
+.nav { display: flex; align-items: center; gap: 36px; }
+.nav__list { display: flex; gap: 28px; }
+.nav__link {
+  position: relative; display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c3cbe0; /* readable over the blue panel too */
+  transition: color .2s;
+}
+.nav__link::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--blue-400);
+  transition: background .2s;
+}
+.nav__link:hover, .nav__link.is-active { color: #fff; }
+.nav__link.is-active::before { background: var(--blue-400); }
+
+.burger { display: none; width: 42px; height: 42px; border-radius: 50%; background: var(--blue-600); position: relative; z-index: 2; }
+.burger span { position: absolute; left: 12px; right: 12px; height: 2px; background: #fff; border-radius: 2px; transition: transform .3s, opacity .3s; }
+.burger span:nth-child(1) { top: 14px; }
+.burger span:nth-child(2) { top: 20px; }
+.burger span:nth-child(3) { top: 26px; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
