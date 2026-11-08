@@ -104,3 +104,67 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; min-height: 100vh; padding: calc(var(--header-h) + 40px) 0 160px;
+  background: var(--bg-2);
+  clip-path: polygon(0 0, 100% 0, 100% 72%, 0 100%);
+  display: flex; align-items: center;
+}
+.hero__panel {
+  position: absolute; inset: 0 auto 0 0; width: 31%;
+  background:
+    radial-gradient(circle at 70% 40%, rgba(91,141,239,.35), transparent 55%),
+    linear-gradient(160deg, var(--blue-600), var(--blue) 45%, var(--blue-900));
+}
+/* static so the absolutely positioned photo anchors to .hero itself */
+.hero__inner {
+  position: static; display: grid; grid-template-columns: 1.05fr 1.2fr; align-items: center; gap: 48px;
+}
+.hero__content { grid-column: 2; position: relative; z-index: 1; }
+/* Social icons pinned to the right edge of the screen, vertically centred in the hero */
+.socials {
+  position: absolute; right: clamp(16px, 2.5vw, 40px); top: calc(50% - 60px); transform: translateY(-50%); z-index: 2;
+}
+/* Photo stands on the hero's bottom edge; the hero's diagonal clip-path cuts it
+   exactly where the dark section begins, giving the clean template finish. */
+.hero { --ph: min(calc(100vh - 130px), 700px); }
+.hero__media {
+  position: absolute; bottom: 0; left: max(16px, calc(31% - var(--ph) * .36));
+}
+.hero__swirl { position: absolute; width: 190px; height: 250px; left: -40px; top: -30px; color: rgba(143,179,255,.35); }
+/* Background-removed cutout with a white outline baked into the PNG */
+.hero__photo-wrap {
+  position: relative; height: var(--ph); aspect-ratio: 515 / 934;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,.5));
+}
+.hero__photo { width: 100%; height: 100%; object-fit: contain; object-position: bottom; display: block; }
+.hero__badge {
+  position: absolute; bottom: 24%; right: -22%;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--card); border: 1px solid var(--line);
+  padding: 9px 16px; border-radius: 999px; font-size: 13px; font-weight: 500; box-shadow: var(--shadow);
+}
+.hero__badge-dot { width: 9px; height: 9px; border-radius: 50%; background: #34d399; box-shadow: 0 0 0 4px rgba(52,211,153,.2); animation: pulse 2s infinite; }
+
+.hero__hello { color: var(--muted); font-size: 15px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+.hero__name { display: flex; flex-direction: column; text-transform: uppercase; }
+.hero__first { color: var(--blue-400); font-size: clamp(30px, 3.6vw, 46px); font-weight: 800; letter-spacing: .01em; }
+.hero__last {
+  font-size: clamp(54px, 7.4vw, 104px); font-weight: 700; letter-spacing: .02em; line-height: 1.05;
+  color: transparent; -webkit-text-stroke: 1.6px #e8ebf2;
+}
+.rule { display: block; width: 56px; height: 3px; background: var(--blue-400); margin: 22px 0; border-radius: 2px; }
+.hero__role { font-family: var(--ff-head); font-size: clamp(18px, 2vw, 24px); font-weight: 600; text-transform: uppercase; letter-spacing: .02em; min-height: 1.4em; }
+.caret { display: inline-block; width: 2px; height: 1em; background: var(--blue-400); margin-left: 4px; vertical-align: -2px; animation: blink 1s steps(1) infinite; }
+.hero__lead { color: var(--muted); max-width: 46ch; margin-top: 16px; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; align-items: center; }
+
+.socials { display: flex; flex-direction: column; gap: 22px; }
+.socials a {
+  width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%;
+  border: 1px solid var(--line); background: rgba(255,255,255,.03); color: #fff; font-size: 19px;
+  transition: background .25s, border-color .25s, transform .25s;
+}
+.socials a:hover { background: var(--blue-600); border-color: var(--blue-600); transform: translateY(-3px); }
+
