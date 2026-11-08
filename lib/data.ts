@@ -132,3 +132,9 @@ export const SKILLS = [
   { group: "Soft Skills", items: ["Communication", "Event Management", "Video Editing", "Sketching", "Technical Content Creation (YouTube)"] },
 ];
 
+export type TimelineItem = { when: string; title: string; org: string; text: string };
+export const EXPERIENCE: TimelineItem[] = [
+  { when: "Internship", title: "Software Development Intern", org: "Coderva", text: "Built and deployed PG_Orchestrator, a production-ready autonomous AI agent for PG discovery and booking near UIET, CSJMU, powered by Groq Llama 3.3 70B with multi-step planning and conversation memory. Wrote a custom JavaScript tool for real-time filtering by budget, room type and food, and automated booking confirmation emails with AWS SES." },
+  { when: "Jul 2025 – Nov 2025", title: "Artificial Intelligence and Machine Learning Mentee", org: "Pregrad", text: "Completed a 3-month industry-level mentorship covering core AI and Machine Learning concepts." },
+  { when: "Jun 2025 – Sep 2025", title: "Data Science and Analytics Mentee", org: "Pregrad", text: "Completed a 3-month industry mentorship and built projects on Credit Risk Modelling and Exploratory Data Analysis (EDA) of a housing dataset under mentor guidance." },
+];
