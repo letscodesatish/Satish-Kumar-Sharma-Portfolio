@@ -152,3 +152,26 @@ export const AWARDS = [
   { title: "LeetCode", org: "Regularly solve data structures and algorithms problems", when: "Ongoing" },
 ];
 
+export type CertType = "hackathon" | "course" | "competition" | "activity";
+export const TYPE_LABEL: Record<CertType, string> = { hackathon: "Hackathon", course: "Course / Internship", competition: "Competition", activity: "Activity" };
+export type Cert = { img: string; title: string; org: string; when: string; type: CertType };
+export const CERTS: Cert[] = [
+  { img: "ai-for-bharat", title: "AI for Bharat Hackathon", org: "AWS × Hack2skill", when: "Jun 2026", type: "hackathon" },
+  { img: "hackshodh", title: "HackShodh 2026 — National Hackathon", org: "CSJM University, Kanpur", when: "Jan 2026", type: "hackathon" },
+  { img: "central-india-hackathon", title: "Central India Hackathon 2.0", org: "Unstop · SCET Nagpur", when: "2025", type: "hackathon" },
+  { img: "codechef", title: "500 Difficulty Rating — PRO", org: "CodeChef", when: "Mar 2026", type: "competition" },
+  { img: "frontend-competition", title: "Front-End Web Development Competition", org: "Code Vidya · Aatmoday, CSJMU", when: "2025", type: "competition" },
+  { img: "pregrad-aiml", title: "Artificial Intelligence with ML", org: "Pregrad", when: "Nov 2025", type: "course" },
+  { img: "pregrad-data-science", title: "Data Science / Analytics Mentorship", org: "Pregrad", when: "Sep 2025", type: "course" },
+  { img: "pregrad-credit-risk", title: "Project — Credit Risk Modelling", org: "Pregrad", when: "2025", type: "course" },
+  { img: "pregrad-eda-housing", title: "Project — EDA Housing Dataset", org: "Pregrad", when: "2025", type: "course" },
+  { img: "codsoft-python", title: "Python Programming Internship", org: "CodSoft", when: "Aug 2025", type: "course" },
+  { img: "unstop-amazon-prep", title: "Amazon Interview Preparation", org: "Unstop", when: "2025", type: "course" },
+  { img: "tata-crucible", title: "TATA Crucible Campus Quiz 2025", org: "Tata Group · Unstop", when: "2025", type: "competition" },
+  { img: "python-quiz", title: "Python Quiz Competition", org: "Knowledge Institute of Technology", when: "2025", type: "competition" },
+  { img: "google-gemini", title: "Freshers' Party Planning Night — #TeamGemini", org: "Google Student Ambassador Program", when: "Jul 2026", type: "activity" },
+  { img: "tux-talk", title: "TUX TALK '25", org: "Coding & Robotics Club, CSJMU", when: "2025", type: "activity" },
+  { img: "aeromodelling", title: "Aeromodelling Workshop", org: "UIET, CSJMU Kanpur", when: "Mar 2025", type: "activity" },
+  { img: "media-pr", title: "Media & PR Team — Achievement", org: "CSJMU 60th Foundation Day", when: "2025", type: "activity" },
+];
+
