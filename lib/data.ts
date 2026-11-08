@@ -122,3 +122,13 @@ export const PROJECTS: Project[] = [
     tags: ["Deep Learning", "Neural Nets", "Jupyter"], repo: GH + "Fashion_mnist",
   },
 ];
+
+export const SKILLS = [
+  { group: "Languages", items: ["Python", "C", "JavaScript", "SQL", "HTML", "CSS"] },
+  { group: "AI / ML", items: ["Machine Learning", "Retrieval-Augmented Generation (RAG)", "LLM Agents", "Scikit-learn", "Pandas", "NumPy"] },
+  { group: "Data Visualization", items: ["Matplotlib", "Seaborn"] },
+  { group: "Web & Databases", items: ["Next.js", "Streamlit", "MySQL"] },
+  { group: "Tools", items: ["Git", "GitHub", "VS Code", "Jupyter Notebook", "Anaconda", "MySQL Workbench", "Google Antigravity", "Claude", "PyInstaller"] },
+  { group: "Soft Skills", items: ["Communication", "Event Management", "Video Editing", "Sketching", "Technical Content Creation (YouTube)"] },
+];
+
