@@ -96,4 +96,9 @@ export const PROJECTS: Project[] = [
     desc: "Web app that checks live Indian Railways PNR status through a Python backend with a clean HTML front-end.",
     tags: ["Python", "HTML", "API"], repo: GH + "PNR_Checker", live: "https://pnr-checker-gules.vercel.app",
   },
+  {
+    title: "Resume & Cover Letter Builder", date: "2025", cat: "web",
+    desc: "Full-stack app where users fill a form and download a professional resume and cover letter as .docx files.",
+    tags: ["React", "Flask", "python-docx"], repo: GH + "Resume_Coverletter_Builder", live: "https://resume-coverletter-builder-bice.vercel.app",
+  },
 ];
