@@ -387,3 +387,31 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 .gh__go { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; color: var(--blue-300); transition: all .2s; }
 .gh__item:hover .gh__go { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
 
+/* ---------- Activity heatmaps (GitHub + LeetCode) ---------- */
+.activity {
+  margin-top: 40px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 24px 26px 20px;
+}
+.activity__head { display: flex; justify-content: space-between; align-items: center; gap: 16px 28px; flex-wrap: wrap; margin-bottom: 18px; }
+.activity__head h3 { display: flex; align-items: center; gap: 10px; font-size: 17px; }
+.activity__head h3 svg { font-size: 20px; color: var(--blue-300); }
+.activity__stats { display: flex; gap: 26px; flex-wrap: wrap; }
+.activity__stats li { display: flex; align-items: baseline; gap: 6px; font-size: 13px; color: var(--muted); }
+.activity__stats li svg { align-self: center; color: #fb923c; font-size: 16px; }
+.activity__stats strong { color: #fff; font-family: var(--ff-head); font-size: 16px; }
+.activity__empty { color: var(--muted); font-size: 14px; }
+.activity__empty a { color: var(--blue-300); text-decoration: underline; }
+
+/* direction:rtl makes the scroll start at the right edge (most recent week) on narrow screens */
+.heatmap__scroll { overflow-x: auto; direction: rtl; scrollbar-width: thin; scrollbar-color: var(--line) transparent; padding-bottom: 6px; }
+/* stroke:none stops the global icon `svg { stroke }` rule outlining every square and label */
+.heatmap__svg { direction: ltr; display: block; width: 100%; min-width: 700px; height: auto; stroke: none; }
+.heatmap__lbl { fill: var(--muted); font-size: 9.5px; font-family: var(--ff-body); }
+.heatmap__legend { display: flex; justify-content: flex-end; align-items: center; gap: 4px; margin-top: 8px; font-size: 12px; color: var(--muted); }
+.heatmap__legend i { width: 11px; height: 11px; border-radius: 2.5px; display: inline-block; }
+.hm-0 { fill: #232b40; background: #232b40; }
+.hm-1 { fill: #1e3a8a; background: #1e3a8a; }
+.hm-2 { fill: #2453c7; background: #2453c7; }
+.hm-3 { fill: #4a7ff0; background: #4a7ff0; }
+.hm-4 { fill: #9cc0ff; background: #9cc0ff; }
+.heatmap rect:hover { stroke: #fff; stroke-width: 1.2; }
+
