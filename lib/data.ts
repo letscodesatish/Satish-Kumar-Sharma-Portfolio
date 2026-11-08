@@ -71,4 +71,9 @@ export const PROJECTS: Project[] = [
     desc: "Regression model that predicts California housing prices using feature engineering and cross-validation. Achieved an R² score of 0.85 and identified median income as the strongest price predictor.",
     tags: ["Python", "Scikit-learn", "Pandas", "NumPy", "Seaborn"], repo: GH + "House-pricing-prediction-model",
   },
+  {
+    title: "Movie Recommendation System", date: "2026", cat: "ml",
+    desc: "Content-based recommender that suggests 5 similar movies using text vectorization and cosine similarity on the TMDB 5000 dataset. Serialized with Pickle and deployed end-to-end as an interactive Streamlit app.",
+    tags: ["Python", "Scikit-learn", "Streamlit", "Pickle"], repo: GH + "Movie_Recommendation_System",
+  },
 ];
