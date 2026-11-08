@@ -629,3 +629,5 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   .stats strong { font-size: 32px; min-width: 0; }
 }
 
+/* Resume download under the contact details */
+.contact__cv { margin-top: 22px; }
