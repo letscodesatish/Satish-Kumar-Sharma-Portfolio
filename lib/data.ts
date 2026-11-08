@@ -91,4 +91,9 @@ export const PROJECTS: Project[] = [
     desc: "Processes Class 10–12 marks data to compute totals, rank top performers and calculate subject-wise averages, with visual reports on academic trends and class-level strengths.",
     tags: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn"], repo: GH + "Student-performance-analyzer",
   },
+  {
+    title: "Live Train PNR Status Tracker", date: "2026", cat: "web",
+    desc: "Web app that checks live Indian Railways PNR status through a Python backend with a clean HTML front-end.",
+    tags: ["Python", "HTML", "API"], repo: GH + "PNR_Checker", live: "https://pnr-checker-gules.vercel.app",
+  },
 ];
