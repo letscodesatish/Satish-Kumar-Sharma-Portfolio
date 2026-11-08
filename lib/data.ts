@@ -76,4 +76,9 @@ export const PROJECTS: Project[] = [
     desc: "Content-based recommender that suggests 5 similar movies using text vectorization and cosine similarity on the TMDB 5000 dataset. Serialized with Pickle and deployed end-to-end as an interactive Streamlit app.",
     tags: ["Python", "Scikit-learn", "Streamlit", "Pickle"], repo: GH + "Movie_Recommendation_System",
   },
+  {
+    title: "Air Pollution (PM2.5) Predictor", date: "2025", cat: "ml",
+    desc: "Regression model that predicts PM2.5 levels from PM10, CO, NO₂, SO₂, ozone and city. Includes EDA notebook and a Streamlit front-end.",
+    tags: ["Python", "Joblib", "Streamlit"], repo: GH + "Air_Pollution_Predictor",
+  },
 ];
