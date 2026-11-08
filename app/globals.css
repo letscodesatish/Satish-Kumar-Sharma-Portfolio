@@ -1,0 +1,52 @@
+/* =========================================================
+   Satish Kumar Sharma — Portfolio
+   Theme: dark slate + dark-blue accent (template yellow → blue)
+   ========================================================= */
+
+:root {
+  --bg: #141925;
+  --bg-2: #1a2030;
+  --card: #1f2638;
+  --card-2: #252d42;
+  --line: #2d3650;
+  --text: #e8ebf2;
+  --muted: #9aa4b8;
+
+  --blue-900: #10245e;
+  --blue: #1e3a8a;
+  --blue-600: #2453c7;
+  --blue-400: #5b8def;
+  --blue-300: #8fb3ff;
+
+  --radius: 6px;
+  --shadow: 0 20px 50px -20px rgba(0, 0, 0, .6);
+  --ff-head: var(--font-serif), Georgia, serif;
+  --ff-body: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --header-h: 76px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--ff-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; }
+ul, ol { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3, h4 { font-family: var(--ff-head); margin: 0; line-height: 1.25; }
+p { margin: 0; }
+svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+:focus-visible { outline: 2px solid var(--blue-400); outline-offset: 3px; border-radius: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.container { width: min(1180px, 100% - 32px); margin-inline: auto; }
+.center { text-align: center; margin-top: 40px; }
+
