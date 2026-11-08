@@ -138,3 +138,9 @@ export const EXPERIENCE: TimelineItem[] = [
   { when: "Jul 2025 – Nov 2025", title: "Artificial Intelligence and Machine Learning Mentee", org: "Pregrad", text: "Completed a 3-month industry-level mentorship covering core AI and Machine Learning concepts." },
   { when: "Jun 2025 – Sep 2025", title: "Data Science and Analytics Mentee", org: "Pregrad", text: "Completed a 3-month industry mentorship and built projects on Credit Risk Modelling and Exploratory Data Analysis (EDA) of a housing dataset under mentor guidance." },
 ];
+export const EDUCATION: TimelineItem[] = [
+  { when: "2024 – 2028 (expected)", title: "Bachelor of Technology — Computer Science and Engineering", org: "Chhatrapati Shahu Ji Maharaj University (CSJMU), Kanpur", text: "CGPA 8.5/10 (up to 4th semester)." },
+  { when: "Class XII", title: "Senior Secondary (CBSE)", org: "Kendriya Vidyalaya PDDU Nagar, Uttar Pradesh", text: "Scored 90%." },
+  { when: "Class X", title: "Secondary (CBSE)", org: "Kendriya Vidyalaya PDDU Nagar, Uttar Pradesh", text: "Scored 95%." },
+];
+
