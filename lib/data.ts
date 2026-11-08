@@ -36,3 +36,14 @@ export const SERVICES: { title: string; text: string; icon: ServiceIcon }[] = [
   { icon: "dsa", title: "Problem Solving & DSA", text: "Regular data structures and algorithms practice on LeetCode, with live stats and a daily streak further down this page." },
 ];
 
+export type ProjectCat = "ai" | "ml" | "web" | "fun";
+export const CAT_LABEL: Record<ProjectCat, string> = { ai: "AI & Agents", ml: "ML & Data", web: "Web & Apps", fun: "Games & Tools" };
+
+export type Project = { title: string; date: string; cat: ProjectCat; desc: string; tags: string[]; repo: string; live?: string };
+export const PROJECTS: Project[] = [
+  {
+    title: "PG Orchestrator — AI Booking Agent", date: "Coderva Internship", cat: "ai",
+    desc: "Production-ready autonomous AI agent for PG accommodation discovery and booking near UIET, CSJMU. Multi-step planning, conversation memory, real-time filtering by budget, room type and food, plus automated booking emails via AWS SES.",
+    tags: ["Groq Llama 3.3 70B", "JavaScript", "AWS SES", "Agents"], repo: GH + "PG_Booking_Agent",
+  },
+];
