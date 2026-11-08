@@ -66,4 +66,9 @@ export const PROJECTS: Project[] = [
     desc: "Cross-platform mobile app for managing class attendance, built with React Native and Expo and set up for Android builds with EAS.",
     tags: ["React Native", "Expo", "TypeScript"], repo: GH + "Attendify",
   },
+  {
+    title: "House Pricing Prediction Model", date: "2025", cat: "ml",
+    desc: "Regression model that predicts California housing prices using feature engineering and cross-validation. Achieved an R² score of 0.85 and identified median income as the strongest price predictor.",
+    tags: ["Python", "Scikit-learn", "Pandas", "NumPy", "Seaborn"], repo: GH + "House-pricing-prediction-model",
+  },
 ];
