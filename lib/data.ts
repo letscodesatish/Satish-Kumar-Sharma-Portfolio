@@ -81,4 +81,9 @@ export const PROJECTS: Project[] = [
     desc: "Regression model that predicts PM2.5 levels from PM10, CO, NO₂, SO₂, ozone and city. Includes EDA notebook and a Streamlit front-end.",
     tags: ["Python", "Joblib", "Streamlit"], repo: GH + "Air_Pollution_Predictor",
   },
+  {
+    title: "Accident Hotspots Mapping", date: "2025", cat: "ml",
+    desc: "Geospatial analysis of accident data that finds high-risk hotspots and renders them on an interactive HTML map.",
+    tags: ["Pandas", "Geospatial", "Jupyter"], repo: GH + "Accident_hotspots",
+  },
 ];
