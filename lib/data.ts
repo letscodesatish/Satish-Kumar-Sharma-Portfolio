@@ -144,3 +144,11 @@ export const EDUCATION: TimelineItem[] = [
   { when: "Class X", title: "Secondary (CBSE)", org: "Kendriya Vidyalaya PDDU Nagar, Uttar Pradesh", text: "Scored 95%." },
 ];
 
+export const AWARDS = [
+  { title: "AI for Bharat Hackathon (AWS and Hack2skill)", org: "Built and submitted a qualified AI prototype using AWS generative AI tools", when: "Jun 2026" },
+  { title: "PFRDA Hackathon, IIT Kanpur", org: "Participated as part of Team Pension Quest", when: "IIT Kanpur" },
+  { title: "HackShodh 2026", org: "24-hour national hackathon at CSJMU, Kanpur", when: "Jan 2026" },
+  { title: "Front-End Web Development Competition", org: "Award winner as part of Team Vayuu", when: "CSJMU" },
+  { title: "LeetCode", org: "Regularly solve data structures and algorithms problems", when: "Ongoing" },
+];
+
