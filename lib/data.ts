@@ -56,4 +56,9 @@ export const PROJECTS: Project[] = [
     desc: "Qualified hackathon prototype that uses generative-AI tools on AWS to solve real-world challenges for India. Built for the AI for Bharat Hackathon.",
     tags: ["TypeScript", "AWS", "Generative AI"], repo: GH + "vedcode-ai4bharat",
   },
+  {
+    title: "Retrieval-Augmented Generation", date: "2026", cat: "ai",
+    desc: "End-to-end RAG pipeline that indexes documents, retrieves the relevant chunks and grounds LLM answers in them. Packaged with uv and explored in notebooks.",
+    tags: ["Python", "RAG", "LLM", "uv"], repo: GH + "Retrieval_Augmented_Generation",
+  },
 ];
