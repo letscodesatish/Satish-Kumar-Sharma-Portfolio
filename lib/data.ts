@@ -116,4 +116,9 @@ export const PROJECTS: Project[] = [
     desc: "Flappy Bird-style arcade game with procedurally generated obstacles, gravity/velocity physics and real-time collision detection. Added sound and persistent high scores, and packaged it as a standalone executable with PyInstaller.",
     tags: ["Python", "Pygame", "PyInstaller"], repo: GH + "Robo_Fly",
   },
+  {
+    title: "Fashion-MNIST Classifier", date: "2025", cat: "ml",
+    desc: "Deep-learning image classifier trained on the Fashion-MNIST dataset, part of my neural-network practice.",
+    tags: ["Deep Learning", "Neural Nets", "Jupyter"], repo: GH + "Fashion_mnist",
+  },
 ];
