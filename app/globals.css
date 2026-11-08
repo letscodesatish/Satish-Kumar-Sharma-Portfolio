@@ -325,3 +325,22 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 .cert__title { font-family: var(--ff-head); font-size: 15px; font-weight: 700; margin: 4px 0; line-height: 1.35; }
 .cert__meta { color: var(--muted); font-size: 13px; }
 
+/* ---------- Lightbox ---------- */
+.lightbox {
+  width: min(1100px, 94vw); max-width: none; max-height: 92vh; padding: 0; border: 0; background: transparent; color: #fff; overflow: visible;
+}
+.lightbox::backdrop { background: rgba(8, 12, 22, .9); backdrop-filter: blur(4px); }
+.lightbox[open] { display: flex; align-items: center; justify-content: center; animation: zoomIn .3s ease; }
+.lightbox figure { margin: 0; text-align: center; }
+.lightbox img { max-height: 80vh; width: auto; margin: 0 auto; border-radius: 8px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+.lightbox figcaption { margin-top: 14px; font-size: 15px; color: #cfd6e6; }
+.lightbox__close { position: fixed; top: 18px; right: 22px; font-size: 38px; line-height: 1; width: 48px; height: 48px; border-radius: 50%; }
+.lightbox__close:hover { background: rgba(255,255,255,.1); }
+.lightbox__nav {
+  position: fixed; top: 50%; translate: 0 -50%; width: 50px; height: 50px; border-radius: 50%;
+  font-size: 34px; line-height: 1; background: rgba(36,83,199,.85);
+}
+.lightbox__nav:hover { background: var(--blue-600); }
+.lightbox__nav--prev { left: 18px; }
+.lightbox__nav--next { right: 18px; }
+
