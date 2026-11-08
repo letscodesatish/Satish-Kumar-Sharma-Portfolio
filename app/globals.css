@@ -176,3 +176,19 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 .section__sub { color: var(--muted); margin-top: 10px; max-width: 58ch; }
 .section__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; }
 
+/* ---------- Services ---------- */
+.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px 48px; margin-top: 56px; }
+.service__icon {
+  position: relative; width: 56px; height: 56px; display: grid; place-items: center; color: var(--blue-400); font-size: 34px; margin-bottom: 22px;
+}
+.service__icon::after {
+  content: ""; position: absolute; width: 46px; height: 22px; bottom: -8px; left: 8px; border-radius: 50%;
+  background: rgba(91,141,239,.14); z-index: -1;
+}
+.service__icon svg { stroke-width: 1.4; }
+.service h3 { font-size: 15px; text-transform: uppercase; letter-spacing: .03em; margin-bottom: 10px; }
+.service p { color: var(--muted); font-size: 15px; max-width: 34ch; }
+.service { transition: transform .3s; }
+.service:hover { transform: translateY(-4px); }
+.service:hover .service__icon { color: var(--blue-300); }
+
