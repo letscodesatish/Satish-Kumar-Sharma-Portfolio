@@ -432,3 +432,29 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 .lc__bar--medium span { color: #fbbf24; } .lc__bar--medium i { background: #fbbf24; }
 .lc__bar--hard span { color: #f87171; }   .lc__bar--hard i { background: #f87171; }
 
+/* ---------- Sketches (masonry gallery) ---------- */
+.sketches { columns: 3 300px; column-gap: 24px; }
+.sketch {
+  display: block; width: 100%; margin: 0 0 24px; break-inside: avoid; text-align: left;
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+.sketch:hover { transform: translateY(-5px); border-color: var(--blue-600); box-shadow: var(--shadow); }
+.sketch__img { position: relative; overflow: hidden; background: #f3f3f1; }
+.sketch__img img { width: 100%; height: auto; display: block; transition: transform .6s; }
+.sketch:hover .sketch__img img { transform: scale(1.04); }
+.sketch__img::after {
+  content: "View"; position: absolute; inset: 0; display: grid; place-items: center;
+  background: rgba(16, 36, 94, .55); color: #fff; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: 13px;
+  opacity: 0; transition: opacity .3s;
+}
+.sketch:hover .sketch__img::after, .sketch:focus-visible .sketch__img::after { opacity: 1; }
+.sketch__body { padding: 16px 18px 18px; }
+.sketch__body h3 { display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 1.35; }
+.sketch__body h3 svg { flex: none; color: var(--blue-300); font-size: 15px; }
+.sketch__body p { color: var(--muted); font-size: 13.5px; margin-top: 6px; }
+.sketch__when { display: inline-block; margin-top: 10px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-300); }
+
+.inline-link { color: var(--blue-300); text-decoration: underline; text-underline-offset: 3px; }
+.inline-link:hover { color: #fff; }
+
