@@ -541,3 +541,18 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   html.js .reveal { opacity: 1; transform: none; }
 }
 
+/* =========================================================
+   Responsive
+   ========================================================= */
+/* Wide screens: nav links start exactly where the hero's blue panel (31% wide) ends */
+@media (min-width: 1300px) {
+  .nav {
+    position: absolute; top: 0; bottom: 0;
+    left: calc(31% + 22px); right: max(16px, calc((100% - 1180px) / 2));
+    justify-content: space-between; gap: 18px;
+  }
+  .nav__list { flex: 1; justify-content: space-between; gap: 6px; }
+  .nav__link { font-size: 12.5px; letter-spacing: .03em; gap: 6px; }
+  .nav .btn { padding: 11px 18px; }
+}
+
