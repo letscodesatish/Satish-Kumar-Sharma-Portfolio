@@ -168,3 +168,11 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 }
 .socials a:hover { background: var(--blue-600); border-color: var(--blue-600); transform: translateY(-3px); }
 
+/* ---------- Sections ---------- */
+.section { padding: 110px 0; position: relative; }
+.section--alt { background: var(--bg-2); }
+.section--slant { clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%); padding: 170px 0; margin: -40px 0; }
+.section__title { color: var(--blue-400); font-size: clamp(26px, 3vw, 36px); font-weight: 700; text-transform: uppercase; letter-spacing: .01em; }
+.section__sub { color: var(--muted); margin-top: 10px; max-width: 58ch; }
+.section__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; }
+
