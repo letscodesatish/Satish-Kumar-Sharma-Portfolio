@@ -606,3 +606,26 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   .section--slant { clip-path: polygon(0 30px, 100% 0, 100% calc(100% - 30px), 0 100%); padding: 120px 0; }
 }
 
+@media (max-width: 640px) {
+  .section { padding: 80px 0; }
+  .carousel { grid-auto-columns: 86%; gap: 16px; }
+  .services { grid-template-columns: 1fr; gap: 40px; }
+  .skills { grid-template-columns: 1fr; }
+  .brands { grid-template-columns: repeat(2, 1fr); }
+  .brands li { height: 92px; }
+  .tabs { gap: 8px; }
+  .tab { padding: 10px 14px; font-size: 12px; }
+  .gh__item { grid-template-columns: 1fr auto; gap: 6px 14px; }
+  .gh__date { grid-column: 1 / -1; }
+  .gh__date b { display: inline; margin-right: 6px; }
+  .form { padding: 24px 18px; }
+  .contact { gap: 28px 18px; }
+  .contact__photo img { height: 300px; }
+  .contact__info { margin-top: 36px; }
+  .contact__list { gap: 16px; }
+  .contact__list li { gap: 10px; font-size: 14px; overflow-wrap: anywhere; }
+  .contact__list .ic { width: 36px; height: 36px; font-size: 16px; }
+  .lightbox__nav { top: auto; bottom: 18px; translate: none; }
+  .stats strong { font-size: 32px; min-width: 0; }
+}
+
