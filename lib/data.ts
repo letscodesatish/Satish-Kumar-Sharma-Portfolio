@@ -183,3 +183,4 @@ export const BRANDS = [
   { name: "LeetCode", sub: "DSA Practice" },
 ];
 
+export const STATS = { certificates: CERTS.length, hackathons: 5, cgpa: 8.5 };
