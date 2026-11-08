@@ -525,3 +525,7 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 .to-top.is-visible { opacity: 1; pointer-events: auto; transform: none; }
 .to-top:hover { background: var(--blue); }
 
+/* ---------- Reveal (only hides when JS is running) ---------- */
+html.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+html.js .reveal.is-in { opacity: 1; transform: none; }
+
