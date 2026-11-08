@@ -415,3 +415,20 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 .hm-4 { fill: #9cc0ff; background: #9cc0ff; }
 .heatmap rect:hover { stroke: #fff; stroke-width: 1.2; }
 
+/* ---------- LeetCode ---------- */
+.lc__profile p { margin-bottom: 6px; }
+.lc__ring { width: 138px; height: 138px; margin: 14px auto 6px; display: block; stroke: none; }
+.lc__ring-bg { fill: none; stroke: var(--card-2); stroke-width: 10; }
+.lc__ring-fg { fill: none; stroke: var(--blue-400); stroke-width: 10; stroke-linecap: round; }
+.lc__ring-num { fill: #fff; font-family: var(--ff-head); font-size: 28px; font-weight: 800; }
+.lc__ring-sub { fill: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.lc__bars { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; text-align: left; }
+.lc__bar-top { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+.lc__bar-top b { color: #fff; }
+.lc__bar-top small { color: var(--muted); font-weight: 400; }
+.lc__track { height: 6px; border-radius: 6px; background: var(--card-2); overflow: hidden; }
+.lc__track i { display: block; height: 100%; border-radius: 6px; }
+.lc__bar--easy span { color: #2dd4bf; }   .lc__bar--easy i { background: #2dd4bf; }
+.lc__bar--medium span { color: #fbbf24; } .lc__bar--medium i { background: #fbbf24; }
+.lc__bar--hard span { color: #f87171; }   .lc__bar--hard i { background: #f87171; }
+
