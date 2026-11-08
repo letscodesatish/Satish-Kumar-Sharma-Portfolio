@@ -304,3 +304,24 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 .awards h4 { margin: 0 0 4px; font-size: 15px; }
 .awards p { color: var(--muted); font-size: 13.5px; }
 
+/* ---------- Certificates ---------- */
+.certs { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; }
+.cert {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; text-align: left;
+  transition: transform .3s, border-color .3s, box-shadow .3s; display: flex; flex-direction: column;
+}
+.cert:hover { transform: translateY(-5px); border-color: var(--blue-600); box-shadow: var(--shadow); }
+.cert__img { position: relative; aspect-ratio: 1.42; overflow: hidden; background: #fff; width: 100%; }
+.cert__img img { object-fit: cover; transition: transform .5s; }
+.cert:hover .cert__img img { transform: scale(1.06); }
+.cert__img::after {
+  content: "View"; position: absolute; inset: 0; display: grid; place-items: center;
+  background: rgba(16, 36, 94, .7); color: #fff; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: 13px;
+  opacity: 0; transition: opacity .3s;
+}
+.cert:hover .cert__img::after, .cert:focus-visible .cert__img::after { opacity: 1; }
+.cert__body { padding: 14px 16px 16px; }
+.cert__type { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-300); }
+.cert__title { font-family: var(--ff-head); font-size: 15px; font-weight: 700; margin: 4px 0; line-height: 1.35; }
+.cert__meta { color: var(--muted); font-size: 13px; }
+
