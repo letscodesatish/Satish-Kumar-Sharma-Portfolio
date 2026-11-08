@@ -192,3 +192,12 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 .service:hover { transform: translateY(-4px); }
 .service:hover .service__icon { color: var(--blue-300); }
 
+/* ---------- Chips ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+.chip {
+  padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line);
+  font-size: 13px; font-weight: 500; color: var(--muted); transition: all .2s;
+}
+.chip:hover { color: #fff; border-color: var(--blue-400); }
+.chip.is-active { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
+
