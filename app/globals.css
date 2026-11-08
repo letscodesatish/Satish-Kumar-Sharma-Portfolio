@@ -529,3 +529,15 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 html.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
 html.js .reveal.is-in { opacity: 1; transform: none; }
 
+/* ---------- Animations ---------- */
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 4px rgba(52,211,153,.2); } 50% { box-shadow: 0 0 0 8px rgba(52,211,153,0); } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes zoomIn { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  html.js .reveal { opacity: 1; transform: none; }
+}
+
