@@ -51,4 +51,9 @@ export const PROJECTS: Project[] = [
     desc: "Offline-first, AI-assisted clinical decision-support PWA for rural health workers. Patient queue, red-flag symptom intake, rule-based triage, first-aid guidance, doctor tele-consult and analytics, in Hindi, Marathi and English.",
     tags: ["TypeScript", "PWA", "AI Triage", "i18n"], repo: GH + "Sehat-Sarthi",
   },
+  {
+    title: "VedCode — AI for Bharat Hackathon", date: "AWS × Hack2skill · 2026", cat: "ai",
+    desc: "Qualified hackathon prototype that uses generative-AI tools on AWS to solve real-world challenges for India. Built for the AI for Bharat Hackathon.",
+    tags: ["TypeScript", "AWS", "Generative AI"], repo: GH + "vedcode-ai4bharat",
+  },
 ];
