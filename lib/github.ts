@@ -63,3 +63,13 @@ export async function getGitHubData(): Promise<GitHubData | null> {
   }
 }
 
+/* ------------------------------------------------------------------
+   Contribution calendar (the green-squares graph, recoloured blue)
+   1. GITHUB_TOKEN set  → official GraphQL API (most reliable)
+   2. otherwise         → the public calendar fragment on github.com
+   ------------------------------------------------------------------ */
+
+const LEVEL: Record<string, Day["level"]> = {
+  NONE: 0, FIRST_QUARTILE: 1, SECOND_QUARTILE: 2, THIRD_QUARTILE: 3, FOURTH_QUARTILE: 4,
+};
+
