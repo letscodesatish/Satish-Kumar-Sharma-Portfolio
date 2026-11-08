@@ -25,3 +25,14 @@ export const PROFILE = {
   badge: "Open to internships",
 };
 
+const GH = "https://github.com/letscodesatish/";
+
+export type ServiceIcon = "agent" | "ml" | "web" | "data" | "dsa";
+export const SERVICES: { title: string; text: string; icon: ServiceIcon }[] = [
+  { icon: "agent", title: "AI Agents & RAG", text: "LLM-powered agents with multi-step planning, tool use and memory, plus retrieval-augmented generation pipelines." },
+  { icon: "ml", title: "Machine Learning", text: "Regression and recommender models with Scikit-learn, Pandas and NumPy, from feature engineering and cross-validation to deployment." },
+  { icon: "web", title: "Web Development", text: "Web apps with Next.js and interactive ML front-ends with Streamlit, deployed on Vercel." },
+  { icon: "data", title: "Data Analysis & Visualisation", text: "Turning raw data into insights with Pandas, NumPy, Matplotlib, Seaborn and interactive maps." },
+  { icon: "dsa", title: "Problem Solving & DSA", text: "Regular data structures and algorithms practice on LeetCode, with live stats and a daily streak further down this page." },
+];
+
