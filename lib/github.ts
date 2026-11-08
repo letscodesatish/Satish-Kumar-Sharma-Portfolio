@@ -73,3 +73,26 @@ const LEVEL: Record<string, Day["level"]> = {
   NONE: 0, FIRST_QUARTILE: 1, SECOND_QUARTILE: 2, THIRD_QUARTILE: 3, FOURTH_QUARTILE: 4,
 };
 
+async function viaGraphQL(token: string) {
+  const res = await fetch(`${API}/graphql`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", "User-Agent": "satish-portfolio" },
+    body: JSON.stringify({
+      query: `query($l:String!){user(login:$l){contributionsCollection{contributionCalendar{
+        weeks{contributionDays{date contributionCount contributionLevel}}}}}}`,
+      variables: { l: PROFILE.githubUser },
+    }),
+    next: { revalidate: 3600 },
+  });
+  if (!res.ok) return null;
+  const json = await res.json();
+  const weeks = json?.data?.user?.contributionsCollection?.contributionCalendar?.weeks;
+  if (!weeks) return null;
+  const counts = new Map<string, number>(), levels = new Map<string, Day["level"]>();
+  for (const w of weeks) for (const d of w.contributionDays) {
+    counts.set(d.date, d.contributionCount);
+    levels.set(d.date, LEVEL[d.contributionLevel] ?? 0);
+  }
+  return { counts, levels };
+}
+
