@@ -96,3 +96,44 @@ async function viaGraphQL(token: string) {
   return { counts, levels };
 }
 
+async function viaHtml() {
+  // github.com sometimes answers 504 for a few seconds; retry once before giving up
+  let res: Response | null = null;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    res = await fetch(`https://github.com/users/${PROFILE.githubUser}/contributions`, {
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; satish-portfolio)" },
+      next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(8000),
+    }).catch(() => null);
+    if (res?.ok) break;
+    await new Promise(r => setTimeout(r, 1500));
+  }
+  if (!res?.ok) return null;
+  const html = await res.text();
+
+  // <td ... data-date="2026-01-05" id="contribution-day-component-1-10" data-level="2" ...>
+  const cells = new Map<string, { date: string; level: Day["level"] }>();
+  for (const m of html.matchAll(/<td\b[^>]*\bdata-date="(\d{4}-\d{2}-\d{2})"[^>]*>/g)) {
+    const tag = m[0];
+    const id = /\bid="([^"]+)"/.exec(tag)?.[1];
+    const level = Number(/\bdata-level="(\d)"/.exec(tag)?.[1] ?? 0) as Day["level"];
+    if (id) cells.set(id, { date: m[1], level });
+  }
+  if (!cells.size) return null;
+
+  // <tool-tip for="contribution-day-component-1-10">3 contributions on January 5th.</tool-tip>
+  const tips = new Map<string, number>();
+  for (const m of html.matchAll(/<tool-tip\b[^>]*\bfor="([^"]+)"[^>]*>([^<]*)<\/tool-tip>/g)) {
+    const n = /^\s*(\d[\d,]*)\s+contribution/.exec(m[2]);
+    tips.set(m[1], n ? Number(n[1].replace(/,/g, "")) : 0);
+  }
+
+  const counts = new Map<string, number>(), levels = new Map<string, Day["level"]>();
+  for (const [id, { date, level }] of cells) {
+    // tooltip count when present; otherwise approximate from the level so the graph still renders
+    counts.set(date, tips.get(id) ?? level);
+    levels.set(date, level);
+  }
+  return { counts, levels };
+}
+
