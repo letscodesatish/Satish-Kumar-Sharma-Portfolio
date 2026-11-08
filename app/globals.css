@@ -562,3 +562,13 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   .nav__link { font-size: 12px; letter-spacing: .04em; }
 }
 
+@media (max-width: 1080px) {
+  .carousel { grid-auto-columns: calc((100% - 28px) / 2); }
+  .skills { grid-template-columns: repeat(2, 1fr); }
+  .brands { grid-template-columns: repeat(4, 1fr); }
+  .hero__inner { gap: 32px; }
+  .hero { --ph: min(calc(100vh - 130px), 560px); }
+  .contact { grid-template-columns: auto 1fr; grid-template-areas: "head head" "photo info" "form form"; }
+  .contact__photo img { height: 400px; }
+}
+
