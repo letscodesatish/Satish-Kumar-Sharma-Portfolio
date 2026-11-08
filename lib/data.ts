@@ -175,3 +175,11 @@ export const CERTS: Cert[] = [
   { img: "media-pr", title: "Media & PR Team — Achievement", org: "CSJMU 60th Foundation Day", when: "2025", type: "activity" },
 ];
 
+export const BRANDS = [
+  { name: "AWS", sub: "AI for Bharat" }, { name: "Google", sub: "Student Ambassador" }, { name: "CodeChef", sub: "PRO Certificate" },
+  { name: "Hack2skill", sub: "Hackathons" }, { name: "Unstop", sub: "Competitions" }, { name: "Pregrad", sub: "Mentorship" },
+  { name: "CodSoft", sub: "Internship" }, { name: "Coderva", sub: "Internship" }, { name: "TATA Crucible", sub: "Campus Quiz" },
+  { name: "CSJMU", sub: "University" }, { name: "IIT Kanpur", sub: "PFRDA Hackathon" },
+  { name: "LeetCode", sub: "DSA Practice" },
+];
+
