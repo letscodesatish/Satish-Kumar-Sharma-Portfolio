@@ -61,4 +61,9 @@ export const PROJECTS: Project[] = [
     desc: "End-to-end RAG pipeline that indexes documents, retrieves the relevant chunks and grounds LLM answers in them. Packaged with uv and explored in notebooks.",
     tags: ["Python", "RAG", "LLM", "uv"], repo: GH + "Retrieval_Augmented_Generation",
   },
+  {
+    title: "Attendify — Attendance App", date: "2026", cat: "web",
+    desc: "Cross-platform mobile app for managing class attendance, built with React Native and Expo and set up for Android builds with EAS.",
+    tags: ["React Native", "Expo", "TypeScript"], repo: GH + "Attendify",
+  },
 ];
