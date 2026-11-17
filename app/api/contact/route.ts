@@ -55,7 +55,8 @@ export async function POST(req: Request) {
     host: SMTP_HOST,
     port,
     secure: port === 465,
-    auth: { user: SMTP_USER, pass: SMTP_PASS },
+    // Google shows App Passwords as "abcd efgh ijkl mnop"; strip the spaces either way
+    auth: { user: SMTP_USER, pass: SMTP_PASS.replace(/\s+/g, "") },
   });
 
   try {
