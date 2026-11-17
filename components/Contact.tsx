@@ -41,20 +41,50 @@ export default function Contact() {
       return;
     }
     setStatus({ kind: "sending" });
+    const honeypot = String(new FormData(e.currentTarget).get("company") ?? "");
+    const sent = () => {
+      setStatus({ kind: "ok", text: "Thanks! Your message has been sent. I'll reply soon." });
+      setFields({ name: "", email: "", message: "" });
+    };
+
     try {
-      const form = new FormData(e.currentTarget);
+      // 1) Own email server, used only if SMTP_* is set (optional). On hosts without the API route,
+      //    or when SMTP isn't configured, this fails and we simply move on to FormSubmit.
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...fields, company: form.get("company") }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok) {
-        setStatus({ kind: "ok", text: "Thanks! Your message has been sent. I'll reply soon." });
-        setFields({ name: "", email: "", message: "" });
-      } else {
-        setStatus({ kind: "bad", text: data.error ?? "Something went wrong.", fallback: true });
+        body: JSON.stringify({ ...fields, company: honeypot }),
+      }).catch(() => null);
+      if (res?.ok) return sent();
+      if (res && (res.status === 400 || res.status === 429)) {
+        // real validation / rate-limit answer from our own server: show it
+        const data = await res.json().catch(() => ({}));
+        return setStatus({ kind: "bad", text: data.error ?? "Something went wrong.", fallback: true });
       }
+
+      // 2) FormSubmit (free, no password or key) emails the message straight to PROFILE.email.
+      //    Its free servers occasionally answer 500, so retry a few times before giving up.
+      const payload = JSON.stringify({
+        name: fields.name.trim(),
+        email: fields.email.trim(),
+        message: fields.message.trim(),
+        _subject: `Portfolio enquiry from ${fields.name.trim()}`,
+        _replyto: fields.email.trim(),
+        _template: "table",
+        _captcha: "false",
+        _honey: honeypot, // FormSubmit drops submissions where this is filled
+      });
+      for (let attempt = 0; attempt < 3; attempt++) {
+        if (attempt) await new Promise(r => setTimeout(r, 1500 * attempt));
+        const fs = await fetch(`https://formsubmit.co/ajax/${PROFILE.email}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: payload,
+        }).catch(() => null);
+        const out = fs ? await fs.json().catch(() => ({})) : {};
+        if (String(out.success) === "true") return sent();
+      }
+      setStatus({ kind: "bad", text: "Couldn't send your message right now.", fallback: true });
     } catch {
       setStatus({ kind: "bad", text: "Network error.", fallback: true });
     }
