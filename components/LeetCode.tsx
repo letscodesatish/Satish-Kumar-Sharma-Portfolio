@@ -4,10 +4,14 @@ import type { LeetCodeData } from "@/lib/leetcode";
 import { ArrowUpRight, LeetCodeIcon } from "./Icons";
 import Heatmap from "./Heatmap";
 import ActivityStats from "./ActivityStats";
+import Badges from "./Badges";
 
 const LANG: Record<string, string> = { java: "Java", python3: "Python", python: "Python", cpp: "C++", c: "C", javascript: "JavaScript", typescript: "TypeScript", mysql: "MySQL" };
 const fmt = (sec: number) =>
   new Date(sec * 1000).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric", timeZone: "Asia/Kolkata" });
+
+const fmtDay = (ymd: string) =>
+  new Date(ymd + "T00:00:00Z").toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" });
 
 function SolvedRing({ solved, total }: { solved: number; total: number }) {
   const R = 52, C = 2 * Math.PI * R;
@@ -58,6 +62,13 @@ export default function LeetCode({ data }: { data: LeetCodeData | null }) {
                     </li>
                   ))}
                 </ul>
+                <Badges
+                  items={data.badges.map(b => ({
+                    key: b.name + b.earned, name: b.name, img: b.icon,
+                    sub: b.earned ? `Earned ${fmtDay(b.earned)}` : undefined,
+                    href: PROFILE.leetcode,
+                  }))}
+                />
               </div>
 
               <ul className="gh__list reveal">

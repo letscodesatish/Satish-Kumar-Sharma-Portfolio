@@ -11,15 +11,17 @@ import Footer from "@/components/Footer";
 import Effects from "@/components/Effects";
 import LeetCode from "@/components/LeetCode";
 import Sketches from "@/components/Sketches";
-import { getGitHubCalendar, getGitHubData } from "@/lib/github";
+import { getGitHubAchievements, getGitHubCalendar, getGitHubData } from "@/lib/github";
 import { getLeetCodeData } from "@/lib/leetcode";
 
 // Rebuild the page in the background at most once an hour (keeps GitHub stats fresh).
 export const revalidate = 3600;
 
 export default async function Home() {
-  // All three are cached for an hour and refreshed together with the page.
-  const [github, ghCalendar, leetcode] = await Promise.all([getGitHubData(), getGitHubCalendar(), getLeetCodeData()]);
+  // All four are cached for an hour and refreshed together with the page.
+  const [github, ghCalendar, leetcode, achievements] = await Promise.all([
+    getGitHubData(), getGitHubCalendar(), getLeetCodeData(), getGitHubAchievements(),
+  ]);
   return (
     <>
       <Header />
@@ -30,7 +32,7 @@ export default async function Home() {
         <Resume repoCount={github?.publicRepos ?? 41} />
         <Certificates />
         <Brands />
-        <GitHubFeed data={github} graph={ghCalendar} />
+        <GitHubFeed data={github} graph={ghCalendar} achievements={achievements} />
         <LeetCode data={leetcode} />
         <Sketches />
         <Contact />

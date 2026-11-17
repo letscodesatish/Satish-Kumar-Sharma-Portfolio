@@ -1,15 +1,16 @@
 import Image from "next/image";
 import { PROFILE, PROJECTS } from "@/lib/data";
 import type { GitHubData } from "@/lib/github";
-import type { GitHubCalendar } from "@/lib/github";
+import type { Achievement, GitHubCalendar } from "@/lib/github";
 import { ArrowUpRight, GitHubIcon } from "./Icons";
 import Heatmap from "./Heatmap";
 import ActivityStats from "./ActivityStats";
+import Badges from "./Badges";
 
 const fmt = (iso: string) =>
   new Date(iso).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric", timeZone: "Asia/Kolkata" });
 
-export default function GitHubFeed({ data, graph }: { data: GitHubData | null; graph: GitHubCalendar | null }) {
+export default function GitHubFeed({ data, graph, achievements }: { data: GitHubData | null; graph: GitHubCalendar | null; achievements: Achievement[] | null }) {
   const calendar = graph?.cal ?? null;
   const unit = graph?.unit ?? "contribution"; // "commit" when github.com was down and we fell back to commit search
   // If GitHub is unreachable at build/revalidate time, fall back to featured projects.
@@ -38,6 +39,14 @@ export default function GitHubFeed({ data, graph }: { data: GitHubData | null; g
               <li><strong>{data?.followers ?? "–"}</strong><span>Followers</span></li>
               <li><strong>{data?.languages ?? "10+"}</strong><span>Languages</span></li>
             </ul>
+            {achievements && (
+              <Badges
+                items={achievements.map(a => ({
+                  key: a.slug, name: a.name, img: a.img, tier: a.tier, sub: a.about,
+                  href: `${PROFILE.github}?achievement=${a.slug}&tab=achievements`,
+                }))}
+              />
+            )}
           </div>
 
           <ul className="gh__list reveal">
