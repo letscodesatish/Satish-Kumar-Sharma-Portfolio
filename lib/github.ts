@@ -22,14 +22,14 @@ export type GitHubData = {
 const API = "https://api.github.com";
 const HIDDEN = new Set([PROFILE.githubUser.toLowerCase()]); // profile-README repo
 
-/** Fetched on the server and cached for one hour (ISR), so visitors never hit GitHub rate limits. */
+/** Fetched on the server and cached for 10 minutes (ISR), so visitors never hit GitHub rate limits. */
 export async function getGitHubData(): Promise<GitHubData | null> {
   const headers: HeadersInit = {
     Accept: "application/vnd.github+json",
     "User-Agent": "satish-portfolio",
     ...(process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {}),
   };
-  const opts = { headers, next: { revalidate: 3600 } };
+  const opts = { headers, next: { revalidate: 600 } };
 
   try {
     const [userRes, reposRes] = await Promise.all([
@@ -82,7 +82,7 @@ async function viaGraphQL(token: string) {
         weeks{contributionDays{date contributionCount contributionLevel}}}}}}`,
       variables: { l: PROFILE.githubUser },
     }),
-    next: { revalidate: 3600 },
+    next: { revalidate: 600 },
   });
   if (!res.ok) return null;
   const json = await res.json();
@@ -102,7 +102,7 @@ async function viaHtml() {
   for (let attempt = 0; attempt < 2; attempt++) {
     res = await fetch(`https://github.com/users/${PROFILE.githubUser}/contributions`, {
       headers: { "User-Agent": "Mozilla/5.0 (compatible; satish-portfolio)" },
-      next: { revalidate: 3600 },
+      next: { revalidate: 600 },
       signal: AbortSignal.timeout(8000),
     }).catch(() => null);
     if (res?.ok) break;
@@ -151,7 +151,7 @@ async function viaCommitSearch() {
     const q = `author:${PROFILE.githubUser} author-date:>=${since}`;
     const res = await fetch(
       `${API}/search/commits?q=${encodeURIComponent(q)}&sort=author-date&order=desc&per_page=100&page=${page}`,
-      { headers, next: { revalidate: 3600 } }
+      { headers, next: { revalidate: 600 } }
     );
     if (!res.ok) return page > 1 ? { counts, levels: undefined } : null;
     const json = await res.json();
@@ -210,7 +210,7 @@ export async function getGitHubAchievements(): Promise<Achievement[] | null> {
     try {
       const res = await fetch(`https://github.com/${PROFILE.githubUser}?tab=achievements`, {
         headers: { "User-Agent": "Mozilla/5.0 (compatible; satish-portfolio)" },
-        next: { revalidate: 3600 },
+        next: { revalidate: 600 },
         signal: AbortSignal.timeout(8000),
       });
       if (!res.ok) throw new Error(String(res.status));

@@ -28,7 +28,7 @@ const QUERY = `query($u: String!) {
 type Count = { difficulty: string; count: number };
 const pick = (arr: Count[] = [], d: string) => arr.find(x => x.difficulty === d)?.count ?? 0;
 
-/** Public LeetCode GraphQL, cached for one hour (refreshed with the page). */
+/** Public LeetCode GraphQL, cached for 10 minutes (refreshed with the page). */
 export async function getLeetCodeData(): Promise<LeetCodeData | null> {
   try {
     const res = await fetch("https://leetcode.com/graphql", {
@@ -39,7 +39,7 @@ export async function getLeetCodeData(): Promise<LeetCodeData | null> {
         "User-Agent": "Mozilla/5.0 (compatible; satish-portfolio)",
       },
       body: JSON.stringify({ query: QUERY, variables: { u: PROFILE.leetcodeUser } }),
-      next: { revalidate: 3600 },
+      next: { revalidate: 600 },
     });
     if (!res.ok) return null;
     const { data } = await res.json();

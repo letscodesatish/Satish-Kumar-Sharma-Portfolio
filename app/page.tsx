@@ -14,11 +14,12 @@ import Sketches from "@/components/Sketches";
 import { getGitHubAchievements, getGitHubCalendar, getGitHubData } from "@/lib/github";
 import { getLeetCodeData } from "@/lib/leetcode";
 
-// Rebuild the page in the background at most once an hour (keeps GitHub stats fresh).
-export const revalidate = 3600;
+// Rebuild the page in the background at most every 10 minutes, so new commits,
+// LeetCode solves and badges show up soon. (~12 GitHub API calls/hour; the limit is 60.)
+export const revalidate = 600;
 
 export default async function Home() {
-  // All four are cached for an hour and refreshed together with the page.
+  // All four are cached for 10 minutes and refreshed together with the page.
   const [github, ghCalendar, leetcode, achievements] = await Promise.all([
     getGitHubData(), getGitHubCalendar(), getLeetCodeData(), getGitHubAchievements(),
   ]);
