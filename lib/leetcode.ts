@@ -10,6 +10,7 @@ export type LeetCodeData = {
   maxStreak: number;
   calendar: Calendar;
   recent: { title: string; slug: string; timestamp: number; lang: string }[];
+  badges: { name: string; icon: string; earned: string }[];
 };
 
 const QUERY = `query($u: String!) {
@@ -19,6 +20,7 @@ const QUERY = `query($u: String!) {
     profile { ranking userAvatar }
     submitStatsGlobal { acSubmissionNum { difficulty count } }
     userCalendar { streak submissionCalendar }
+    badges { id displayName icon creationDate }
   }
   recentAcSubmissionList(username: $u, limit: 6) { title titleSlug timestamp lang }
 }`;
@@ -64,6 +66,12 @@ export async function getLeetCodeData(): Promise<LeetCodeData | null> {
       totals: { all: pick(all, "All"), easy: pick(all, "Easy"), medium: pick(all, "Medium"), hard: pick(all, "Hard") },
       maxStreak: Math.max(u.userCalendar?.streak ?? 0, calendar.longestStreak),
       calendar,
+      // badge icons are sometimes site-relative ("/static/...")
+      badges: (u.badges ?? []).map((b: Record<string, string>) => ({
+        name: b.displayName,
+        icon: b.icon?.startsWith("http") ? b.icon : `https://leetcode.com${b.icon}`,
+        earned: b.creationDate,
+      })),
       recent: (data.recentAcSubmissionList ?? []).map((s: Record<string, string>) => ({
         title: s.title, slug: s.titleSlug, timestamp: Number(s.timestamp), lang: s.lang,
       })),
