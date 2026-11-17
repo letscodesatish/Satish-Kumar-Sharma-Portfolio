@@ -24,7 +24,7 @@ export default function GitHubFeed({ data, graph, achievements }: { data: GitHub
         <div className="section__head reveal">
           <div>
             <h2 className="section__title">What&apos;s new?<br />Fresh from GitHub</h2>
-            <p className="section__sub">Pulled from the GitHub API and refreshed every hour: my most recently updated repositories.</p>
+            <p className="section__sub">Pulled from the GitHub API and refreshed every 10 minutes: my most recently updated repositories.</p>
           </div>
           <a href={PROFILE.github} target="_blank" rel="noopener noreferrer" className="btn btn--outline">Follow on GitHub</a>
         </div>

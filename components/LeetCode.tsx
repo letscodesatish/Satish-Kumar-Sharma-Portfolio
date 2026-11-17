@@ -41,7 +41,7 @@ export default function LeetCode({ data }: { data: LeetCodeData | null }) {
         <div className="section__head reveal">
           <div>
             <h2 className="section__title">Problem solving<br />on LeetCode</h2>
-            <p className="section__sub">Live stats from LeetCode, refreshed every hour: problems solved, recent accepted solutions and my daily streak.</p>
+            <p className="section__sub">Live stats from LeetCode, refreshed every 10 minutes: problems solved, recent accepted solutions and my daily streak.</p>
           </div>
           <a href={PROFILE.leetcode} target="_blank" rel="noopener noreferrer" className="btn btn--outline">View LeetCode profile</a>
         </div>

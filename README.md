@@ -34,7 +34,7 @@ Certificate images go in `public/assets/certificates/` (the `img` field is the f
 
 ## GitHub & LeetCode sections (auto-updating)
 
-Fetched on the server and refreshed every hour, with no action needed:
+Fetched on the server and refreshed every 10 minutes, with no action needed:
 - **GitHub**: profile stats, latest repos, and the contribution graph (read from your public GitHub calendar).
 - **LeetCode** (`letscodesatish18`): solved counts by difficulty, ranking, recent accepted problems, and the submission streak graph.
 
