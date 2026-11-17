@@ -183,3 +183,55 @@ export async function getGitHubCalendar(): Promise<GitHubCalendar | null> {
   if (commits) return { cal: buildCalendar(commits.counts), unit: "commit" };
   return null;
 }
+
+/* ------------------------------------------------------------------
+   Achievements (Pull Shark, Quickdraw, YOLO …)
+   GitHub has no API for these, so read them from the public profile page.
+   ------------------------------------------------------------------ */
+
+export type Achievement = { slug: string; name: string; img: string; tier: string | null; about: string };
+
+const ACHIEVEMENT_ABOUT: Record<string, string> = {
+  "pull-shark": "Opened pull requests that have been merged",
+  quickdraw: "Closed an issue or pull request within 5 minutes of opening",
+  yolo: "Merged a pull request without a code review",
+  "pair-extraordinaire": "Co-authored commits on merged pull requests",
+  starstruck: "Created a repository that many people starred",
+  "galaxy-brain": "Answered discussions that were marked as accepted",
+  "public-sponsor": "Sponsored an open source contributor",
+  "arctic-code-vault-contributor": "Contributed code to the 2020 GitHub Archive Program",
+  "mars-2020-contributor": "Contributed code to the Mars 2020 Helicopter Mission",
+  "open-sourcerer": "Had pull requests merged in multiple public repositories",
+  heart_on_your_sleeve: "Reacted to something on GitHub with an emoji",
+};
+
+export async function getGitHubAchievements(): Promise<Achievement[] | null> {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const res = await fetch(`https://github.com/${PROFILE.githubUser}?tab=achievements`, {
+        headers: { "User-Agent": "Mozilla/5.0 (compatible; satish-portfolio)" },
+        next: { revalidate: 3600 },
+        signal: AbortSignal.timeout(8000),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      const html = await res.text();
+
+      // <a href="/user?achievement=pull-shark&amp;tab=achievements" …><img src="…" … alt="Achievement: Pull Shark" …>
+      //   <span class="Label achievement-tier-label …">x2</span></a>
+      const found = new Map<string, Achievement>();
+      const re = /<a\b[^>]*href="[^"]*[?&](?:amp;)?achievement=([\w-]+)[^"]*"[^>]*>([\s\S]*?)<\/a>/g;
+      for (const m of html.matchAll(re)) {
+        const [, slug, inner] = m;
+        const img = /<img\b[^>]*\bsrc="([^"]+)"/.exec(inner)?.[1];
+        const name = /alt="Achievement: ([^"]+)"/.exec(inner)?.[1];
+        if (!img || !name || found.has(slug)) continue;
+        const tier = /achievement-tier-label[^>]*>\s*([^<\s][^<]*?)\s*</.exec(inner)?.[1] ?? null;
+        found.set(slug, { slug, name, img, tier, about: ACHIEVEMENT_ABOUT[slug] ?? "" });
+      }
+      return [...found.values()];
+    } catch {
+      await new Promise(r => setTimeout(r, 1500));
+    }
+  }
+  return null;
+}
