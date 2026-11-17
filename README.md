@@ -11,14 +11,16 @@ npm run dev        # http://localhost:3000
 
 Production: `npm run build && npm start`
 
-## Contact form setup (real emails)
+## Contact form
 
-1. Turn on 2-Step Verification on your Google account.
-2. Create an App Password at https://myaccount.google.com/apppasswords
-3. Copy `.env.example` to `.env.local` and paste the 16-character app password into `SMTP_PASS`.
-4. Restart the dev server.
+Works with **no password or API key**: messages are delivered to `satish.21.buv@gmail.com` through
+[FormSubmit](https://formsubmit.co).
 
-Without these variables the form shows a "not set up yet" message with a direct email link.
+- One-time setup: FormSubmit emails an **Activate Form** link to that inbox the first time; click it once.
+- To change the receiving address, edit `email` in `lib/data.ts` (and activate the new address the same way).
+
+Optional: to send through your own Gmail instead, copy `.env.example` to `.env.local` and fill in an
+App Password. The form uses it automatically when it's present.
 
 ## Resume download
 
