@@ -432,6 +432,18 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
 .lc__bar--medium span { color: #fbbf24; } .lc__bar--medium i { background: #fbbf24; }
 .lc__bar--hard span { color: #f87171; }   .lc__bar--hard i { background: #f87171; }
 
+/* ---------- Mini badges inside the GitHub / LeetCode profile cards ---------- */
+.mini-badges { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+.mini-badges__label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.mini-badges ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.mini-badges a { position: relative; display: block; border-radius: 50%; transition: transform .2s; }
+.mini-badges a:hover { transform: translateY(-3px) scale(1.06); }
+.mini-badges img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0,0,0,.4)); }
+.mini-badges__tier {
+  position: absolute; right: -4px; bottom: -2px; font-size: 10px; font-weight: 700; color: #fff;
+  background: var(--blue-600); border: 2px solid var(--card); border-radius: 999px; padding: 0 5px; line-height: 1.4;
+}
+
 /* ---------- Sketches (masonry gallery) ---------- */
 .sketches { columns: 3 300px; column-gap: 24px; }
 .sketch {
