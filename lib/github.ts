@@ -22,8 +22,72 @@ export type GitHubData = {
 const API = "https://api.github.com";
 const HIDDEN = new Set([PROFILE.githubUser.toLowerCase()]); // profile-README repo
 
-/** Fetched on the server and cached for 10 minutes (ISR), so visitors never hit GitHub rate limits. */
+const SITE_HEADERS = { "User-Agent": "Mozilla/5.0 (compatible; satish-portfolio)" };
+const decode = (s: string) =>
+  s.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;|&#x27;/g, "'");
+const parseCount = (s: string) => {
+  const n = parseFloat(s.replace(/,/g, ""));
+  return /k$/i.test(s) ? Math.round(n * 1000) : n;
+};
+
+/**
+ * Profile + repositories read straight from github.com, the same pages you see in the browser.
+ * No API key and no 60-requests/hour API limit, so it keeps updating on shared hosts like Vercel.
+ */
+async function viaSite(): Promise<GitHubData | null> {
+  const get = async (url: string) => {
+    const res = await fetch(url, { headers: SITE_HEADERS, next: { revalidate: 600 }, signal: AbortSignal.timeout(8000) });
+    if (!res.ok) throw new Error(`${res.status} ${url}`);
+    return res.text();
+  };
+
+  const profile = await get(`https://github.com/${PROFILE.githubUser}`);
+  const followers = /<span class="text-bold color-fg-default">([\d.,kK]+)<\/span>\s*followers?/.exec(profile)?.[1];
+  const bio = /data-bio-text="([^"]*)"/.exec(profile)?.[1];
+  const avatar = /<img\b[^>]*class="[^"]*avatar-user[^"]*"[^>]*\bsrc="([^"]+)"/.exec(profile)?.[1];
+
+  // Repositories tab lists 30 per page, newest update first; read until a short page (max 5 pages).
+  const repos: Repo[] = [];
+  for (let page = 1; page <= 5; page++) {
+    const html = await get(`https://github.com/${PROFILE.githubUser}?tab=repositories&page=${page}`);
+    const items = [...html.matchAll(/<li\b([^>]*itemprop="owns"[^>]*)>([\s\S]*?)<\/li>/g)];
+    for (const [, attrs, body] of items) {
+      const name = /itemprop="name codeRepository"[^>]*>\s*([^<]+?)\s*</.exec(body)?.[1];
+      if (!name) continue;
+      repos.push({
+        name,
+        url: `https://github.com/${PROFILE.githubUser}/${name}`,
+        description: (() => { const d = /itemprop="description">\s*([^<]*?)\s*</.exec(body)?.[1]; return d ? decode(d) : null; })(),
+        language: /itemprop="programmingLanguage">([^<]+)</.exec(body)?.[1] ?? null,
+        pushedAt: /<relative-time\b[^>]*datetime="([^"]+)"/.exec(body)?.[1] ?? "",
+        fork: /\bclass="[^"]*\bfork\b/.test(attrs),
+      });
+    }
+    if (items.length < 30) break;
+  }
+  if (!repos.length || followers === undefined) return null; // page layout changed → let the API take over
+
+  return {
+    publicRepos: repos.length,
+    followers: parseCount(followers),
+    bio: bio ? decode(bio) : null,
+    avatar: avatar ? decode(avatar) : "",
+    repos: repos.filter(r => !r.fork && !HIDDEN.has(r.name.toLowerCase())),
+    languages: new Set(repos.map(r => r.language).filter(Boolean)).size,
+  };
+}
+
+/** Profile + repos for the GitHub section: github.com first, the REST API only as a backup. Cached 10 minutes. */
 export async function getGitHubData(): Promise<GitHubData | null> {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const site = await viaSite().catch(() => null);
+    if (site) return site;
+    await new Promise(r => setTimeout(r, 1500)); // github.com sometimes answers 5xx for a moment
+  }
+  return viaApi();
+}
+
+async function viaApi(): Promise<GitHubData | null> {
   const headers: HeadersInit = {
     Accept: "application/vnd.github+json",
     "User-Agent": "satish-portfolio",
